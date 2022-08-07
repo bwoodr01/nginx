@@ -26,3 +26,17 @@ brew install hashicorp/tap/terraform
 brew update
 brew upgrade hashicorp/tap/terraform
 ```
+
+# Build new image
+
+```
+./build.sh
+```
+
+Output will include tag
+
+# Update Terraform with new tag
+
+```
+python update.py terraform -t <tag>
+```
