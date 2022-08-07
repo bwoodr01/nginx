@@ -7,5 +7,5 @@ readinessProbe:
   enabled: false
 service:
   nodePorts:
-    http: '30080'
+    http: "30080"
   type: NodePort
