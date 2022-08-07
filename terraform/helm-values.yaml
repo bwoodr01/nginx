@@ -1,0 +1,11 @@
+image:
+  repository: bwoodr01/nginx
+  tag: e7142ff
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false
+service:
+  nodePorts:
+    http: '30080'
+  type: NodePort
