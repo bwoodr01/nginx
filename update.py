@@ -92,7 +92,7 @@ def terraform(tag: str, token: str):
     github = Github(token)
 
     repo = github.get_repo(github_repo)
-    body = f"Updating terraform helm values tag to : {tag}"
+    body = f"Updating terraform helm values tag to: {tag}"
     head = f"terraform-update-tag-{tag}"
     pr = repo.create_pull(
         title="New docker tag",
@@ -100,7 +100,8 @@ def terraform(tag: str, token: str):
         head=head,
         base="main",
     )
-    logger.info(f"PR opened at https://github.com/{github_repo}/pull/{pr['number']}")
+    logger.info(f"PR opened at https://github.com/{github_repo}/pulls")
+    logger.info(pr)
 
     pass
 

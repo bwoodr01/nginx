@@ -6,6 +6,7 @@ livenessProbe:
 readinessProbe:
   enabled: false
 service:
-  nodePorts:
-    http: '30080'
-  type: NodePort
+  # nodePorts: # kind cluster
+  #   http: "31083" # kind cluster
+  # type: NodePort $ kinde cluster
+  type: ClusterIP
