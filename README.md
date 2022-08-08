@@ -26,3 +26,15 @@ brew install hashicorp/tap/terraform
 brew update
 brew upgrade hashicorp/tap/terraform
 ```
+
+Helm
+
+```
+brew install helm
+```
+
+Helm
+
+```
+brew install eksctl
+```
