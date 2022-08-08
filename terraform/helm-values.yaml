@@ -1,21 +1,21 @@
 image:
   repository: bwoodr01/nginx
-  tag: e7142ff
+  tag: 419b521
+ingress:
+  annotations:
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:836566418525:certificate/0663464b-cd27-4ab8-98ac-cddda8f137da
+    alb.ingress.kubernetes.io/group.name: nginx
+    alb.ingress.kubernetes.io/healthcheck-path: /index.html
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/success-codes: '200'
+  enabled: true
+  hostname: turo.licbgw.com
+  ingressClassName: alb
+  path: /
+  pathType: Prefix
 livenessProbe:
   enabled: false
 readinessProbe:
   enabled: false
 service:
   type: NodePort
-ingress:
-  enabled: true
-  ingressClassName: "alb"
-  annotations:
-    alb.ingress.kubernetes.io/scheme: "internet-facing"
-    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-1:836566418525:certificate/0663464b-cd27-4ab8-98ac-cddda8f137da"
-    alb.ingress.kubernetes.io/group.name: "nginx"
-    alb.ingress.kubernetes.io/healthcheck-path: "/index.html"
-    alb.ingress.kubernetes.io/success-codes: "200"
-  hostname: "turo.licbgw.com"
-  path: "/"
-  pathType: "Prefix"
