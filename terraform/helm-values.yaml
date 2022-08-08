@@ -6,6 +6,16 @@ livenessProbe:
 readinessProbe:
   enabled: false
 service:
-  # nodePorts: # kind cluster
-  #   http: "31083" # kind cluster
-  type: ClusterIP
+  type: NodePort
+ingress:
+  enabled: true
+  ingressClassName: "alb"
+  annotations:
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-1:836566418525:certificate/0663464b-cd27-4ab8-98ac-cddda8f137da"
+    alb.ingress.kubernetes.io/group.name: "nginx"
+    alb.ingress.kubernetes.io/healthcheck-path: "/index.html"
+    alb.ingress.kubernetes.io/success-codes: "200"
+  hostname: "turo.licbgw.com"
+  path: "/"
+  pathType: "Prefix"
