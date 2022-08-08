@@ -1,0 +1,12 @@
+image:
+  repository: bwoodr01/nginx
+  tag: e7142ff
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false
+service:
+  # nodePorts: # kind cluster
+  #   http: "31083" # kind cluster
+  # type: NodePort $ kinde cluster
+  type: ClusterIP
