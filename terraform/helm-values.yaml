@@ -1,6 +1,6 @@
 image:
   repository: bwoodr01/nginx
-  tag: f643700
+  tag: 7176ba6
 livenessProbe:
   enabled: false
 readinessProbe:
