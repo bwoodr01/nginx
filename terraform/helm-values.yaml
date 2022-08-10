@@ -1,6 +1,6 @@
 image:
   repository: bwoodr01/nginx
-  tag: f643700
+  tag: 7176ba6
 livenessProbe:
   enabled: false
 readinessProbe:
@@ -22,3 +22,13 @@ ingress:
   hostname: "test-subaccount-1.rr.mu"
   path: "/"
   pathType: "Prefix"
+serverBlock: |-
+  server {
+    listen  8080;
+
+    include  "/opt/bitnami/nginx/conf/bitnami/*.conf";
+
+    location /config.html {
+      return 200 "<!DOCTYPE html><h2>Config Map Page!</h2>\n";
+    }
+  }
