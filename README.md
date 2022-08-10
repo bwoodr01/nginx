@@ -28,7 +28,10 @@ brew upgrade hashicorp/tap/terraform
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> af14b6c6cb389742ef126b16b037abaef029aca1
 Helm
 
 ```
