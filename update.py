@@ -38,7 +38,14 @@ def update():
     help="Github Access Token",
     required=False,
 )
-def terraform(tag: str, token: str):
+def terraform_pr_tag(tag: str, token: str):
+    """
+    Takes docker tag and make PR for helm-values changes
+
+    \b
+    Examples:
+        python update.py terraform-pr-tag -t 419b521
+    """
 
     if not token:
         if not os.getenv("GITHUB_TOKEN"):
@@ -104,6 +111,52 @@ def terraform(tag: str, token: str):
     logger.info(pr)
 
     pass
+
+
+@update.command()
+def terraform_resources():
+    """
+    Deploys terraform
+
+    \b
+    Examples:
+        python update.py terraform-resources
+    """
+
+    working_dir = os.getcwd() + "/terraform"
+
+    init_cmd = "terraform init"
+    logger.info(f"Running {init_cmd}")
+    subprocess_exec_cmd(init_cmd, working_dir, timeout=120)
+
+    apply_cmd = "terraform apply --auto-approve"
+    logger.info(f"Running {apply_cmd}")
+    subprocess_exec_cmd(apply_cmd, working_dir, timeout=600)
+
+    logger.info("Successfulyl deployed terraform!")
+
+
+@update.command()
+def terraform_nuke():
+    """
+    Runs terraform destroy and removes all local state files
+
+    \b
+    Examples:
+        python update.py terraform-nuke
+    """
+
+    working_dir = os.getcwd() + "/terraform"
+
+    destroy_cmd = "terraform destroy"
+    logger.info(f"Running {destroy_cmd}")
+    subprocess_exec_cmd(destroy_cmd, working_dir, timeout=600)
+
+    cleanup_cmd = "rm -rf .terraform/ && rm .terraform* && rm terraform.tfstate*"
+    logger.info(f"Running {cleanup_cmd}")
+    subprocess_exec_cmd(cleanup_cmd, working_dir, timeout=30)
+
+    logger.info("Successfulyl deleted terraform!")
 
 
 if __name__ == "__main__":
